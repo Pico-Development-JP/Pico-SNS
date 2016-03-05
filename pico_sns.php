@@ -6,11 +6,11 @@
  * @author TakamiChie
  * @link http://onpu-tamago.net/
  * @license http://opensource.org/licenses/MIT
- * @version 1.0
+ * @version 1.1
  */
-class Pico_SNS {
+class Pico_SNS extends AbstractPicoPlugin {
   
-  public function before_read_file_meta(&$headers)
+  public function onMetaHeaders(array &$headers)
   {
   	$headers['twitter'] = 'Twitter';
   	$headers['facebook'] = 'Facebook';
@@ -18,19 +18,20 @@ class Pico_SNS {
   	$headers['youtube'] = 'Youtube';
   }
 
-  public function get_page_data(&$data, $page_meta)
+  public function onSinglePageLoaded(array &$pageData)
   {
-    if($page_meta['twitter']){
-      $data['twitter'] = $page_meta['twitter'];
+    $meta = $pageData['meta'];
+    if($meta['twitter']){
+      $pageData['twitter'] = $meta['twitter'];
     }
-    if($page_meta['facebook']){
-      $data['facebook'] = $page_meta['facebook'];
+    if($meta['facebook']){
+      $pageData['facebook'] = $meta['facebook'];
     }
-    if($page_meta['github']){
-      $data['github'] = $page_meta['github'];
+    if($meta['github']){
+      $pageData['github'] = $meta['github'];
     }
-    if($page_meta['youtube']){
-      $data['youtube'] = $page_meta['youtube'];
+    if($meta['youtube']){
+      $pageData['youtube'] = $meta['youtube'];
     }
   }
 }
