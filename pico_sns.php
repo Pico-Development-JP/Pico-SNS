@@ -6,10 +6,12 @@
  * @author TakamiChie
  * @link http://onpu-tamago.net/
  * @license http://opensource.org/licenses/MIT
- * @version 1.1
+ * @version 1.11
  */
 class Pico_SNS extends AbstractPicoPlugin {
   
+  protected $enabled = false;
+
   public function onMetaHeaders(array &$headers)
   {
   	$headers['twitter'] = 'Twitter';
